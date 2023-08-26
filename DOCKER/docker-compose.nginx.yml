@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    hostname: nginx-proxy-manager
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M
+        reservations:
+          cpus: '0.2'
+          memory: 250M
+    environment:
+      DB_MYSQL_HOST: nginx-db
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: ${VPS_MYSQL_USER}
+      DB_MYSQL_PASSWORD: ${VPS_MYSQL_PASSWORD}
+      DB_MYSQL_NAME: npm
+    volumes:
+      - ./.nginx-proxy-manager:/data
+      - ./.letsencrypt:/etc/letsencrypt
+    networks:
+      - vps-network
+
+  nginx-db:
+    image: jc21/mariadb-aria:latest
+    container_name: nginx-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${VPS_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: npm
+      MYSQL_USER: ${VPS_MYSQL_USER}
+      MYSQL_PASSWORD: ${VPS_MYSQL_PASSWORD}
+    volumes:
+      - ./.nginx-proxy-manager-db:/var/lib/mysql
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network

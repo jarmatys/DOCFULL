@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    hostname: portainer
+    restart: always
+    environment:
+      - VIRTUAL_HOST=${PORTAINER_VHOST}
+      - VIRTUAL_PORT=9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network
+
+volumes:
+  portainer_data:

@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.7.7-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBIT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBIT_PASSWORD}
+      - RABBITMQ_DEFAULT_VHOST=/
+      - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=${RABBIT_RAM}
+    volumes:
+      - ./.rabbitmq:/var/lib/rabbitmq
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network

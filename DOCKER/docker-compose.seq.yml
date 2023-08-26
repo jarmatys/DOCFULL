@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    hostname: seq
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - ./.seq:/data
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network
