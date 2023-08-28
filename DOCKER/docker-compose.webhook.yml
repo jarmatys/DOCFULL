@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  webhook:
+    image: thecatlady/webhook
+    container_name: webhook
+    hostname: webhook
+    command: -verbose -hooks=webhooks.json -hotreload
+    volumes:
+      - ${WEBHOOK_LOCATION}:/config:ro
+    restart: always
