@@ -44,6 +44,7 @@ cp DOCKER/.env /var/common/vps/.env
 cp DOCKER/docker-compose.mssql.yml /var/common/app/docker-compose.mssql.yml
 cp DOCKER/docker-compose.rabbit.yml /var/common/app/docker-compose.rabbit.yml
 cp DOCKER/docker-compose.seq.yml /var/common/app/docker-compose.seq.yml
+cp DOCKER/docker-compose.webhook.yml /var/common/app/docker-compose.webhook.yml
 
 cp DOCKER/docker-compose.nginx.yml /var/common/vps/docker-compose.nginx.yml
 cp DOCKER/docker-compose.portainer.yml /var/common/vps/docker-compose.portainer.yml
@@ -64,6 +65,7 @@ cd /var/common/app/
 sudo docker compose -f docker-compose.rabbit.yml up -d
 sudo docker compose -f docker-compose.mssql.yml up -d
 sudo docker compose -f docker-compose.seq.yml up -d
+sudo docker compose -f docker-compose.webhook.yml up -d
 
 cd /var/common/vps/
 sudo docker compose -f docker-compose.nginx.yml up -d
