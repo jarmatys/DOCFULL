@@ -9,3 +9,10 @@ services:
     volumes:
       - ${WEBHOOK_LOCATION}:/config:ro
     restart: always
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network
