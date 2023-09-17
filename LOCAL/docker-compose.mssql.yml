@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    hostname: mssql
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password123
+    volumes:
+      - ./.mssql:/var/opt/mssql/data
+    networks:
+      - localhost-network
+
+networks:
+  localhost-network:
+    external: true
+    name: localhost-network

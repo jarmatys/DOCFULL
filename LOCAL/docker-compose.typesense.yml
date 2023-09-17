@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  typesense:
+    image: typesense/typesense:0.25.1
+    container_name: typesense
+    hostname: typesense
+    restart: unless-stopped
+    ports:
+      - 8108:8108
+    volumes:
+      - ./.typesense-data:/data
+    command: '--data-dir /data --api-key=xyz --enable-cors'
+    networks:
+      - localhost-network
+
+networks:
+  localhost-network:
+    external: true
+    name: localhost-network
