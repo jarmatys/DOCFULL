@@ -1,0 +1,19 @@
+
+services:
+  twingate_connector:
+    container_name: twingate
+    image: twingate/connector:latest
+    restart: always
+    environment:
+      - TWINGATE_NETWORK=${TWINGATE_NETWORK}
+      - TWINGATE_ACCESS_TOKEN=${TWINGATE_ACCESS_TOKEN}
+      - TWINGATE_REFRESH_TOKEN=${TWINGATE_REFRESH_TOKEN}
+    sysctls:
+      net.ipv4.ping_group_range: "0 2147483647"
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network

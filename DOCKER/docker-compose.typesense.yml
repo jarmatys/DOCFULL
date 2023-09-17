@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  typesense:
+    image: typesense/typesense:0.25.1
+    container_name: typesense
+    hostname: typesense
+    restart: always
+    ports:
+      - 8108:8108
+    volumes:
+      - ./.typesense-data:/data
+    command: '--data-dir /data --api-key=${TYPESENSE_TOKEN} --enable-cors'
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network
