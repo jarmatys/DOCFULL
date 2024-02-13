@@ -1,4 +1,4 @@
-# 1. install-docker.sh
+# 1. yinstall-docker.sh
 
 # 2.1. Login to docker hub
 
@@ -36,10 +36,16 @@ cat id_rsa.pub >> ~/.ssh/authorized_keys
 
 # ?. Add permissions to folders
 
-sudo chmod 777 /var/opeenet/ # TODO: Nazwa aplikacji do zmiennej
+sudo chmod 777 /var/justsales/ # TODO: Nazwa aplikacji do zmiennej
 sudo chmod -R 777 /var/common/
 
+# Prepare .env file for app and commons
+
 # ?. Run all needed containers
+
+cd /var/common/vps/
+sudo docker compose -f docker-compose.nginx.yml up -d
+sudo docker compose -f docker-compose.portainer.yml up -d
 
 cd /var/common/app/
 sudo docker compose -f docker-compose.rabbit.yml up -d
@@ -47,13 +53,7 @@ sudo docker compose -f docker-compose.mssql.yml up -d
 sudo docker compose -f docker-compose.seq.yml up -d
 sudo docker compose -f docker-compose.webhook.yml up -d
 
-cd /var/common/vps/
-sudo docker compose -f docker-compose.nginx.yml up -d
-sudo docker compose -f docker-compose.portainer.yml up -d
-
 # -----
-
-# Prepare .env file for app and commons
 
 # Choose app to run on docker from docker composes
 
