@@ -1,0 +1,28 @@
+version: '3'
+services:
+  sqlpad:
+    image: sqlpad/sqlpad:5
+    hostname: 'sqlpad'
+    ports:
+      - 3000:3000
+    environment:
+      SQLPAD_ADMIN: ${SQLPAD_EMAIL}
+      SQLPAD_ADMIN_PASSWORD: ${SQLPAD_PASSWORD}
+      SQLPAD_APP_LOG_LEVEL: info
+      SQLPAD_WEB_LOG_LEVEL: warn
+      # SQLPAD_CONNECTIONS__sqlserverdemo__name: SQL Server Demo
+      # SQLPAD_CONNECTIONS__sqlserverdemo__driver: sqlserver
+      # SQLPAD_CONNECTIONS__sqlserverdemo__host: mssql
+      # SQLPAD_CONNECTIONS__sqlserverdemo__database: master
+      # SQLPAD_CONNECTIONS__sqlserverdemo__username: sa
+      # SQLPAD_CONNECTIONS__sqlserverdemo__password: SuperP4ssw0rd!
+    volumes:
+      - sqlpad-volume:/var/lib/sqlpad
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network
+
+volumes:
+  sqlpad-volume:
