@@ -2,7 +2,9 @@ version: '3'
 services:
   sqlpad:
     image: sqlpad/sqlpad:5
+    container_name: sqlpad
     hostname: 'sqlpad'
+    restart: always
     ports:
       - 3000:3000
     environment:
@@ -18,6 +20,8 @@ services:
       # SQLPAD_CONNECTIONS__sqlserverdemo__password: SuperP4ssw0rd!
     volumes:
       - sqlpad-volume:/var/lib/sqlpad
+    networks:
+      - vps-network
 
 networks:
   vps-network:
