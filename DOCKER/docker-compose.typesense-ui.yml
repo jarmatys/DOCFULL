@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  typesense-dashboard:
+    image: ghcr.io/bfritscher/typesense-dashboard
+    container_name: typesense-dashboard
+    hostname: typesense-dashboard
+    volumes:
+      - /path/to/config.json:/srv/config.json
+    restart: always
+    networks:
+      - vps-network
+
+networks:
+  vps-network:
+    external: true
+    name: vps-network
