@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   typesense:
     image: typesense/typesense:0.25.1
@@ -9,12 +7,9 @@ services:
     ports:
       - 8108:8108
     volumes:
-      - ./.typesense-data:/data
+      - local-setup-typesense:/data
     command: '--data-dir /data --api-key=xyz --enable-cors'
-    networks:
-      - localhost-network
 
-networks:
-  localhost-network:
-    external: true
-    name: localhost-network
+volumes:
+  local-setup-typesense:
+    driver: local

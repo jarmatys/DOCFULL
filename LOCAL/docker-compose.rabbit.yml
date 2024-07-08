@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   rabbitmq:
     image: rabbitmq:3.7.7-management
@@ -14,11 +12,8 @@ services:
       - RABBITMQ_DEFAULT_PASS=user
       - RABBITMQ_DEFAULT_VHOST=/
     volumes:
-      - ./.rabbitmq:/var/lib/rabbitmq
-    networks:
-      - localhost-network
+      - local-setup-rabbitmq:/var/lib/rabbitmq
 
-networks:
-  localhost-network:
-    external: true
-    name: localhost-network
+volumes:
+  local-setup-rabbitmq:
+    driver: local

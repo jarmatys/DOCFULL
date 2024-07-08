@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -12,11 +10,8 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Password123
     volumes:
-      - ./.mssql:/var/opt/mssql/data
-    networks:
-      - localhost-network
+      - local-setup-mssql:/var/opt/mssql/data
 
-networks:
-  localhost-network:
-    external: true
-    name: localhost-network
+volumes:
+  local-setup-mssql:
+    driver: local

@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   proxy:
     image: mattes/rotating-proxy:latest
@@ -11,10 +9,3 @@ services:
       - 4444:4444
     environment:
       - tors=25
-    networks:
-      - localhost-network
-
-networks:
-  localhost-network:
-    external: true
-    name: localhost-network
