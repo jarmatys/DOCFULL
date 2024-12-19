@@ -1,0 +1,14 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    hostname: ollama
+    restart: always
+    ports:
+      - 11434:11434
+    volumes:
+      - local-setup-ollama:/root/.ollama
+
+volumes:
+  local-setup-ollama:
+    driver: local
