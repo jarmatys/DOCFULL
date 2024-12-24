@@ -5,7 +5,7 @@ services:
 #    environment:
 #      - MODEL=llama2:7b
     hostname: ollama
-    restart: always
+    restart: unless-stopped
     ports:
       - 11434:11434
     volumes:
