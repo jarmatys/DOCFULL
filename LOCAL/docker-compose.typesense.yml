@@ -1,6 +1,6 @@
 services:
   typesense:
-    image: typesense/typesense:0.25.1
+    image: typesense/typesense:28.0
     container_name: typesense
     hostname: typesense
     restart: unless-stopped
