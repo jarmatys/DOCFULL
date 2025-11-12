@@ -10,6 +10,17 @@ services:
       - local-setup-typesense:/data
     command: '--data-dir /data --api-key=xyz --enable-cors'
 
+  typesense-dashboard:
+    image: ghcr.io/bfritscher/typesense-dashboard:latest
+    container_name: typesense-dashboard
+    restart: unless-stopped
+    ports:
+      - 8109:80
+    volumes:
+      - ./config/typesense-dashboard.json:/srv/config.json
+    depends_on:
+      - typesense
+
 volumes:
   local-setup-typesense:
     driver: local
