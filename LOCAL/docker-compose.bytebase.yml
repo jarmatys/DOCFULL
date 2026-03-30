@@ -1,0 +1,16 @@
+services:
+  bytebase:
+    image: bytebase/bytebase:latest
+    container_name: bytebase
+    hostname: bytebase
+    restart: unless-stopped
+    pull_policy: always
+    ports:
+      - 8080:8080
+    command: --external-url http://localhost:8080
+    volumes:
+      - local-setup-bytebase:/var/opt/bytebase
+
+volumes:
+  local-setup-bytebase:
+    driver: local
