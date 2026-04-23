@@ -1,6 +1,7 @@
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
+    platform: linux/amd64
     container_name: mssql
     hostname: mssql
     user: root
